@@ -28,7 +28,7 @@ except ImportError:
 # Conexão com banco
 host = 'localhost'
 user = 'root'
-password = '7812136'
+password = ''
 database = 'bd_comercio'
 
 def busca(tabela):
@@ -87,8 +87,8 @@ try:
     variancia = np.var(valores, ddof=1)
     coef_var = desvio_padrao / media if media != 0 else np.nan
 
-    assimetria = valores.skew()
-    curtose_val = valores.kurtosis()
+    assimetria = df_novo['roubo_comercio'].skew()
+    curtose_val = df_novo['roubo_comercio'].kurtosis()
 
     distancia = abs((media - mediana) / mediana)
 
