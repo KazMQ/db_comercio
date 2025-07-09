@@ -127,7 +127,7 @@ try:
         ["Limite Superior", limite_sup]
     ], headers=["Extremos", "Valor"], titulo="Valores Extremos e Limites de Outliers")
 
-    df_desc = df_novo.sort_values(by='roubo_comercio', ascending=False).reset_index(drop=True)
+    df_desc = df_novo.sort_values(by='roubo_comercio', ascending=True).reset_index(drop=True)
     exibir_tabela(df_desc[['munic', 'roubo_comercio']], headers='keys', titulo="Ranqueamento dos Municípios - Ordem Decrescente")
 
 except Exception as e:
@@ -139,7 +139,7 @@ try:
     fig, ax = plt.subplots(1, 2, figsize=(14, 6))
 
     if not outliers_inf.empty:
-        dados = outliers_inf.sort_values(by='roubo_comercio')
+        dados = outliers_inf.sort_values(by='roubo_comercio', ascending=True)
         ax[0].barh(dados['munic'], dados['roubo_comercio'], color='tomato')
         ax[0].set_title('Outliers Inferiores')
     else:
@@ -148,7 +148,7 @@ try:
     ax[0].set_xlabel('roubo_comercio')
 
     if not outliers_sup.empty:
-        dados = outliers_sup.sort_values(by='roubo_comercio')
+        dados = outliers_sup.sort_values(by='roubo_comercio', ascending=True)
         ax[1].barh(dados['munic'], dados['roubo_comercio'], color='seagreen')
         ax[1].set_title('Outliers Superiores')
     else:
@@ -159,11 +159,10 @@ try:
     plt.tight_layout()
     plt.show()
 
-except Exception as e:
-    print(f"Erro ao exibir gráfico: {e}")
+
 
 # Gráficos de Assimetria e Curtose
-try:
+
     plt.figure(figsize=(12, 5))
 
     # Histograma com curvas para assimetria
